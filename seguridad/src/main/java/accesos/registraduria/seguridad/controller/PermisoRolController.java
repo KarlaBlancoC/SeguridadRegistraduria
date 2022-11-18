@@ -98,7 +98,10 @@ public class PermisoRolController {
     }
 
     @DeleteMapping("{id}")
-    public void delete(@PathVariable String id){
+    public int delete(@PathVariable String id){
+
         this.permisoRolRepo.deleteById(id);
+        int resp = 1;
+        return resp;
     }
 }

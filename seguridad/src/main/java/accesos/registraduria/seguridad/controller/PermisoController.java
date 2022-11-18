@@ -44,11 +44,14 @@ public class PermisoController {
     }
 
     @DeleteMapping("/{id}")
-    public void delete(@PathVariable String id){
+    public int delete(@PathVariable String id){
 
         Optional<Permiso> opt = this.permisoRepo.findById(id);
         if(opt.isPresent()) {
             this.permisoRepo.deleteById(id);
         }
+
+        int resp = 1;
+        return resp;
     }
 }

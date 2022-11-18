@@ -75,12 +75,16 @@ public class UsuarioController {
     }
 
     @DeleteMapping("/{id}")
-    public void delete(@PathVariable String id){
-
+    public int delete(@PathVariable String id){
+        int response;
         Optional<Usuario> opt = this.usuarioRepo.findById(id);
         if(opt.isPresent()) {
             this.usuarioRepo.deleteById(id);
+            response = 1;
+        } else{
+            response = 0;
         }
+        return response;
     }
 
     public String tecnicaHash(String password){

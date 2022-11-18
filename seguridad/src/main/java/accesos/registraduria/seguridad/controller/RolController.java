@@ -44,7 +44,10 @@ public class RolController {
     }
 
     @DeleteMapping("{id}")
-    public void delete(@PathVariable String id){
+    public int delete(@PathVariable String id){
+
         this.rolRepo.deleteById(id);
+        int resp = 1;
+        return resp;
     }
 }
