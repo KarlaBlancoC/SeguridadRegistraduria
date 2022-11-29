@@ -11,6 +11,7 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.List;
 import java.util.Optional;
+import java.util.Hashtable;
 
 @RestController
 @RequestMapping("/usuarios")
@@ -75,14 +76,14 @@ public class UsuarioController {
     }
 
     @DeleteMapping("/{id}")
-    public int delete(@PathVariable String id){
-        int response;
+    public Hashtable delete(@PathVariable String id){
         Optional<Usuario> opt = this.usuarioRepo.findById(id);
+        Hashtable <String, Integer> response= new Hashtable<String, Integer>();
         if(opt.isPresent()) {
             this.usuarioRepo.deleteById(id);
-            response = 1;
+            response.put("delete_count",1);
         } else{
-            response = 0;
+            response.put("delete_count",0);
         }
         return response;
     }
